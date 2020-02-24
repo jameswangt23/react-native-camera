@@ -78,22 +78,22 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   }
 
   @ReactProp(name = "scanAreaX")
-  public void setScanAreaX(RNCameraView view, double scanAreaX) {
+  public void setScanAreaX(RNCameraView view, int scanAreaX) {
     view.setScanAreaX(scanAreaX);
   }
 
   @ReactProp(name = "scanAreaY")
-  public void setScanAreaY(RNCameraView view, double scanAreaY) {
+  public void setScanAreaY(RNCameraView view, int scanAreaY) {
     view.setScanAreaY(scanAreaY);
   }
 
   @ReactProp(name = "scanAreaWidth")
-  public void setScanAreaWidth(RNCameraView view, double scanAreaWidth) {
+  public void setScanAreaWidth(RNCameraView view, int scanAreaWidth) {
     view.setScanAreaWidth(scanAreaWidth);
   }
 
   @ReactProp(name = "scanAreaHeight")
-  public void setScanAreaHeight(RNCameraView view, double scanAreaHeight) {
+  public void setScanAreaHeight(RNCameraView view, int scanAreaHeight) {
     view.setScanAreaHeight(scanAreaHeight);
   }
   /**---limit scan area addition---**/

@@ -69,10 +69,10 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
 
   //ScanAreaLimitParams
   private boolean mScanAreaLimit = false;
-  private double mScanAreaX = 0.0;
-  private double mScanAreaY = 0.0;
-  private double mScanAreaWidth = 0.0;
-  private double mScanAreaHeight = 0.0;
+  private int mScanAreaX = 0;
+  private int mScanAreaY = 0;
+  private int mScanAreaWidth = 0;
+  private int mScanAreaHeight = 0;
 
   public RNCameraView(ThemedReactContext themedReactContext) {
     super(themedReactContext, true);
@@ -480,19 +480,19 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
     this.mScanAreaLimit = scanAreaLimit;
   }
 
-  public void setScanAreaX(double scanAreaX) {
+  public void setScanAreaX(int scanAreaX) {
     this.mScanAreaX = scanAreaX;
   }
 
-  public void setScanAreaY(double scanAreaY) {
+  public void setScanAreaY(int scanAreaY) {
     this.mScanAreaY = scanAreaY;
   }
 
-  public void setScanAreaWidth(double scanAreaWidth) {
+  public void setScanAreaWidth(int scanAreaWidth) {
     this.mScanAreaWidth = scanAreaWidth;
   }
 
-  public void setScanAreaHeight(double mScanAreaHeight) {
+  public void setScanAreaHeight(int mScanAreaHeight) {
     this.mScanAreaHeight = mScanAreaHeight;
   }
 

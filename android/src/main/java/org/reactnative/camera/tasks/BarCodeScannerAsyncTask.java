@@ -14,10 +14,10 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
   private BarCodeScannerAsyncTaskDelegate mDelegate;
   private final MultiFormatReader mMultiFormatReader;
   private boolean mScanAreaLimit;
-  private double mScanAreaX;
-  private double mScanAreaY;
-  private double mScanAreaWidth;
-  private double mScanAreaHeight;
+  private int mScanAreaX;
+  private int mScanAreaY;
+  private int mScanAreaWidth;
+  private int mScanAreaHeight;
 
   //  note(sjchmiela): From my short research it's ok to ignore rotation of the image.
   public BarCodeScannerAsyncTask(
@@ -27,10 +27,10 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
       int width,
       int height,
       boolean scanAreaLimit,
-      double scanAreaX,
-      double scanAreaY,
-      double scanAreaWidth,
-      double scanAreaHeight
+      int scanAreaX,
+      int scanAreaY,
+      int scanAreaWidth,
+      int scanAreaHeight
   ) {
     mImageData = imageData;
     mWidth = width;
