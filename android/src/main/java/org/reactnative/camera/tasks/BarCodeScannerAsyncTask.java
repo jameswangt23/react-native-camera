@@ -13,6 +13,11 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
   private int mHeight;
   private BarCodeScannerAsyncTaskDelegate mDelegate;
   private final MultiFormatReader mMultiFormatReader;
+  private boolean mScanAreaLimit;
+  private double mScanAreaX;
+  private double mScanAreaY;
+  private double mScanAreaWidth;
+  private double mScanAreaHeight;
 
   //  note(sjchmiela): From my short research it's ok to ignore rotation of the image.
   public BarCodeScannerAsyncTask(
@@ -20,13 +25,23 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
       MultiFormatReader multiFormatReader,
       byte[] imageData,
       int width,
-      int height
+      int height,
+      boolean scanAreaLimit,
+      double scanAreaX,
+      double scanAreaY,
+      double scanAreaWidth,
+      double scanAreaHeight,
   ) {
     mImageData = imageData;
     mWidth = width;
     mHeight = height;
     mDelegate = delegate;
     mMultiFormatReader = multiFormatReader;
+    mScanAreaLimit = scanAreaLimit;
+    mScanAreaX = scanAreaX;
+    mScanAreaY = scanAreaY;
+    mScanAreaWidth = scanAreaWidth;
+    mScanAreaHeight = scanAreaHeight;
   }
 
   @Override
@@ -101,18 +116,18 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
     mDelegate.onBarCodeScanningTaskCompleted();
   }
 
-  private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse, boolean scanAreaLimit, double scanAreaX, double scanAreaY, double scanAreaWidth, double scaAreaHeight) {
+  private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse) {
   // private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse) {
     PlanarYUVLuminanceSource source;
-    if (scanAreaLimit) {
+    if (mScanAreaLimit) {
       source = new PlanarYUVLuminanceSource(
         imageData, // byte[] yuvData
         width, // int dataWidth
         height, // int dataHeight
-        scanAreaX, // int left
-        scanAreaY, // int top
-        scanAreaWidth, // int width
-        scaAreaHeight, // int height
+        mScanAreaX, // int left
+        mScanAreaY, // int top
+        mScanAreaWidth, // int width
+        mScaAreaHeight, // int height
         false // boolean reverseHorizontal
       );
     } else {
