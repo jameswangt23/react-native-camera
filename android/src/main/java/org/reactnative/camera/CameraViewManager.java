@@ -70,6 +70,35 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     return builder.build();
   }
 
+  /**---limit scan area addition---**/
+
+  @ReactProp(name = "scanAreaLimit")
+  public void setScanAreaLimit(RNCameraView view, boolean scanAreaLimit) {
+    view.setScanAreaLimit(scanAreaLimit);
+  }
+
+  @ReactProp(name = "scanAreaX")
+  public void setScanAreaX(RNCameraView view, int scanAreaX) {
+    view.setScanAreaX(scanAreaX);
+  }
+
+  @ReactProp(name = "scanAreaY")
+  public void setScanAreaY(RNCameraView view, int scanAreaY) {
+    view.setScanAreaY(scanAreaY);
+  }
+
+  @ReactProp(name = "scanAreaWidth")
+  public void setScanAreaWidth(RNCameraView view, int scanAreaWidth) {
+    view.setScanAreaWidth(scanAreaWidth);
+  }
+
+  @ReactProp(name = "scanAreaHeight")
+  public void setScanAreaHeight(RNCameraView view, int scanAreaHeight) {
+    view.setScanAreaHeight(scanAreaHeight);
+  }
+  /**---limit scan area addition---**/
+
+
   @ReactProp(name = "type")
   public void setType(RNCameraView view, int type) {
     view.setFacing(type);

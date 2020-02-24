@@ -22,7 +22,7 @@ type Orientation = Readonly<{
 }>;
 type OrientationNumber = 1 | 2 | 3 | 4;
 type AutoFocus = Readonly<{ on: any; off: any }>;
-type VideoStabilization = Readonly<{off: any, standard: any, cinematic: any, auto: any}>;
+type VideoStabilization = Readonly<{ off: any, standard: any, cinematic: any, auto: any }>;
 type FlashMode = Readonly<{ on: any; off: any; torch: any; auto: any }>;
 type CameraType = Readonly<{ front: any; back: any }>;
 type WhiteBalance = Readonly<{
@@ -219,6 +219,15 @@ export interface RNCameraProps {
   /** Android only */
   playSoundOnCapture?: boolean;
 
+  /**
+   * limit scan area addition
+   */
+  scanAreaLimit?: boolean;
+  scanAreaX?: number;
+  scanAreaY?: number;
+  scanAreaWidth?: number;
+  scanAreaHeight?: number;
+
   androidCameraPermissionOptions?: {
     title: string;
     message: string;
@@ -272,9 +281,9 @@ export interface Barcode {
     firstName?: string;
     lastName?: string;
     middleName?: string;
-    prefix?:string;
-    pronounciation?:string;
-    suffix?:string;
+    prefix?: string;
+    pronounciation?: string;
+    suffix?: string;
     formattedName?: string;
   };
   phone?: Phone;
@@ -313,18 +322,18 @@ export interface Barcode {
 }
 
 export type BarcodeType =
-  |"EMAIL"
-  |"PHONE"
-  |"CALENDAR_EVENT"
-  |"DRIVER_LICENSE"
-  |"GEO"
-  |"SMS"
-  |"CONTACT_INFO"
-  |"WIFI"
-  |"TEXT"
-  |"ISBN"
-  |"PRODUCT"
-  |"URL"
+  | "EMAIL"
+  | "PHONE"
+  | "CALENDAR_EVENT"
+  | "DRIVER_LICENSE"
+  | "GEO"
+  | "SMS"
+  | "CONTACT_INFO"
+  | "WIFI"
+  | "TEXT"
+  | "ISBN"
+  | "PRODUCT"
+  | "URL"
 
 export interface Email {
   address?: string;

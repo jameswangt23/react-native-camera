@@ -101,8 +101,22 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
     mDelegate.onBarCodeScanningTaskCompleted();
   }
 
-  private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse) {
-    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+  private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse, boolean scanAreaLimit, double scanAreaX, double scanAreaY, double scanAreaWidth, double scaAreaHeight) {
+  // private BinaryBitmap generateBitmapFromImageData(byte[] imageData, int width, int height, boolean inverse) {
+    PlanarYUVLuminanceSource source;
+    if (scanAreaLimit) {
+      source = new PlanarYUVLuminanceSource(
+        imageData, // byte[] yuvData
+        width, // int dataWidth
+        height, // int dataHeight
+        scanAreaX, // int left
+        scanAreaY, // int top
+        scanAreaWidth, // int width
+        scaAreaHeight, // int height
+        false // boolean reverseHorizontal
+      );
+    } else {
+        source = new PlanarYUVLuminanceSource(
         imageData, // byte[] yuvData
         width, // int dataWidth
         height, // int dataHeight
@@ -111,7 +125,18 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
         width, // int width
         height, // int height
         false // boolean reverseHorizontal
-    );
+      );
+    }
+    // PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+    //     imageData, // byte[] yuvData
+    //     width, // int dataWidth
+    //     height, // int dataHeight
+    //     0, // int left
+    //     0, // int top
+    //     width, // int width
+    //     height, // int height
+    //     false // boolean reverseHorizontal
+    // );
     if (inverse) {
       return new BinaryBitmap(new HybridBinarizer(source.invert()));
     } else {

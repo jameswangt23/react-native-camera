@@ -67,6 +67,13 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
   private int mPaddingX;
   private int mPaddingY;
 
+  //ScanAreaLimitParams
+  private boolean mScanAreaLimit = false;
+  private double mScanAreaX = 0.0;
+  private double mScanAreaY = 0.0;
+  private double mScanAreaWidth = 0.0;
+  private double mScanAreaHeight = 0.0;
+
   public RNCameraView(ThemedReactContext themedReactContext) {
     super(themedReactContext, true);
     mThemedReactContext = themedReactContext;
@@ -152,7 +159,9 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
         if (willCallBarCodeTask) {
           barCodeScannerTaskLock = true;
           BarCodeScannerAsyncTaskDelegate delegate = (BarCodeScannerAsyncTaskDelegate) cameraView;
-          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height).execute();
+          // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, correctData, correctWidth, correctHeight, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight).execute();
+          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight).execute();
+          // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height).execute();
         }
 
         if (willCallFaceTask) {
@@ -464,6 +473,27 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
     }
 
     RNCameraViewHelper.emitBarcodeDetectionErrorEvent(this, barcodeDetector);
+  }
+
+  //ScanAreaLimit addition
+  public void setScanAreaLimit(boolean scanAreaLimit) {
+    this.mScanAreaLimit = scanAreaLimit;
+  }
+
+  public void setScanAreaX(double scanAreaX) {
+    this.mScanAreaX = scanAreaX;
+  }
+
+  public void setScanAreaY(double scanAreaY) {
+    this.mScanAreaY = scanAreaY;
+  }
+
+  public void setScanAreaWidth(double scanAreaWidth) {
+    this.mScanAreaWidth = scanAreaWidth;
+  }
+
+  public void setScanAreaHeight(double mScanAreaHeight) {
+    this.mScanAreaHeight = mScanAreaHeight;
   }
 
   @Override
