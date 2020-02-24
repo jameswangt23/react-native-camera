@@ -30,7 +30,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
       double scanAreaX,
       double scanAreaY,
       double scanAreaWidth,
-      double scanAreaHeight,
+      double scanAreaHeight
   ) {
     mImageData = imageData;
     mWidth = width;
