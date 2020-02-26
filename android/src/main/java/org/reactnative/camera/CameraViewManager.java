@@ -87,8 +87,8 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "cameraViewDimensions")
   public void setRectOfInterest(RNCameraView view, ReadableMap dimensions) {
     if(dimensions != null){
-      int cameraWidth = (float) coordinates.getDouble("cameraWidth");
-      int cameraHeight = (float) coordinates.getDouble("cameraHeight");
+      int cameraWidth = (float) coordinates.getDouble("width");
+      int cameraHeight = (float) coordinates.getDouble("height");
       view.setCameraDimensions(cameraWidth, cameraHeight);
     }
   }

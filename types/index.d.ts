@@ -138,6 +138,7 @@ export interface RNCameraProps {
   autoFocusPointOfInterest?: Point;
   pictureSize?: string;
 
+
   /* iOS only */
   onSubjectAreaChanged?: (event: { nativeEvent: { prevPoint: { x: number; y: number; } } }) => void;
   type?: keyof CameraType;
@@ -222,11 +223,13 @@ export interface RNCameraProps {
   /**
    * limit scan area addition
    */
-  scanAreaLimit?: boolean;
-  scanAreaX?: number;
-  scanAreaY?: number;
-  scanAreaWidth?: number;
-  scanAreaHeight?: number;
+  rectOfInterest?: Point;
+  cameraViewDimensions?: Object;
+  // scanAreaLimit?: boolean;
+  // scanAreaX?: number;
+  // scanAreaY?: number;
+  // scanAreaWidth?: number;
+  // scanAreaHeight?: number;
 
   androidCameraPermissionOptions?: {
     title: string;
