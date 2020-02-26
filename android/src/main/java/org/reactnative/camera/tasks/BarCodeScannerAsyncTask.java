@@ -62,7 +62,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
     Result result = null;
 
     int actualCamHeight = (int) (mCameraHeight / mRatio);
-    float actualMScanY = (((actualCamHeight - mCameraWidth) / 2) + (mScanAreaY * mCameraHeight)) / actualCamHeight;
+    float actualMScanY = (((actualCamHeight - mCameraWidth) / 2) + (mScanAreaY * mCameraWidth)) / actualCamHeight;
     
     int left = (int) (mScanAreaX * mWidth);
     int top = (int) (actualMScanY * mHeight);
