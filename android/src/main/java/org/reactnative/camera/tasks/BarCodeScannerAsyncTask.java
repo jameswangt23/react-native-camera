@@ -92,10 +92,10 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
               mHeight,
               mWidth,
               false,
-              mWidth - scanWidth - left,
               mHeight - scanHeight - top,
-              scanWidth,
-              scanHeight
+              left,
+              scanHeight,
+              scanWidth
       );
       try {
         result = mMultiFormatReader.decodeWithState(bitmap);
