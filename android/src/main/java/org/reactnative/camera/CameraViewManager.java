@@ -78,17 +78,15 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
       float y = (float) coordinates.getDouble("y");
       float width = (float) coordinates.getDouble("width");
       float height = (float) coordinates.getDouble("height");
-      int cameraWidth = (float) coordinates.getDouble("cameraWidth");
-      int cameraHeight = (float) coordinates.getDouble("cameraHeight");
       view.setRectOfInterest(x, y, width, height);
     }
   }
 
   @ReactProp(name = "cameraViewDimensions")
-  public void setRectOfInterest(RNCameraView view, ReadableMap dimensions) {
+  public void setCameraViewDimensions(RNCameraView view, ReadableMap dimensions) {
     if(dimensions != null){
-      int cameraWidth = (float) coordinates.getDouble("width");
-      int cameraHeight = (float) coordinates.getDouble("height");
+      int cameraWidth = (int) coordinates.getDouble("width");
+      int cameraHeight = (int) coordinates.getDouble("height");
       view.setCameraDimensions(cameraWidth, cameraHeight);
     }
   }
