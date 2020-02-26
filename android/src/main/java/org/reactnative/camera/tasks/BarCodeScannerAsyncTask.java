@@ -70,7 +70,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
     float actualMScanY = (((actualCamHeight - mCameraWidth) / 2) + (mScanAreaY * mCameraHeight)) / actualCamHeight;
     
     int left = (int) (mScanAreaX * mWidth);
-    int top = (int) (actualMScanY * mHeight)
+    int top = (int) (actualMScanY * mHeight);
     int scanWidth = (int) (mScanAreaWidth * mWidth);
     int scanHeight = (int) (((mScanAreaHeight * mCameraWidth) / actualCamHeight) * mHeight);
     
@@ -79,11 +79,11 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
               mImageData,
               mWidth,
               mHeight,
+              false,
               left,
               top,
               scanWidth,
               scanHeight
-              false
       );
       result = mMultiFormatReader.decodeWithState(bitmap);
     } catch (NotFoundException e) {
@@ -91,37 +91,37 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
               rotateImage(mImageData,mWidth, mHeight),
               mHeight,
               mWidth,
+              false,
               mWidth - scanWidth - left,
               mHeight - scanHeight - top,
               scanWidth,
               scanHeight
-              false
       );
       try {
         result = mMultiFormatReader.decodeWithState(bitmap);
       } catch (NotFoundException e1) {
           BinaryBitmap invertedBitmap = generateBitmapFromImageData(
-                  mImageData,
-                  mWidth,
-                  mHeight,
-                  true,
-                  mWidth - scanWidth - left,
-                  mHeight - scanHeight - top,
-                  scanWidth,
-                  scanHeight
+              mImageData,
+              mWidth,
+              mHeight,
+              true,
+              mWidth - scanWidth - left,
+              mHeight - scanHeight - top,
+              scanWidth,
+              scanHeight
           );
         try {
           result = mMultiFormatReader.decodeWithState(invertedBitmap);
         } catch (NotFoundException e2) {
           BinaryBitmap invertedRotatedBitmap = generateBitmapFromImageData(
-                  rotateImage(mImageData,mWidth, mHeight),
-                  mHeight,
-                  mWidth,
-                  true,
-                  top,
-                  mWidth - scanWidth - left,
-                  scanHeight,
-                  scanWidth
+              rotateImage(mImageData,mWidth, mHeight),
+              mHeight,
+              mWidth,
+              true,
+              top,
+              mWidth - scanWidth - left,
+              scanHeight,
+              scanWidth
           );
           try {
             result = mMultiFormatReader.decodeWithState(invertedRotatedBitmap);
