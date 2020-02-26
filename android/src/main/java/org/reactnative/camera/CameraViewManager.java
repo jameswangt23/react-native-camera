@@ -85,9 +85,9 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "cameraViewDimensions")
   public void setCameraViewDimensions(RNCameraView view, ReadableMap dimensions) {
     if(dimensions != null){
-      int cameraWidth = (int) coordinates.getDouble("width");
-      int cameraHeight = (int) coordinates.getDouble("height");
-      view.setCameraDimensions(cameraWidth, cameraHeight);
+      int cameraWidth = (int) dimensions.getDouble("width");
+      int cameraHeight = (int) dimensions.getDouble("height");
+      view.setCameraViewDimensions(cameraWidth, cameraHeight);
     }
   }
   /**---limit scan area addition---**/

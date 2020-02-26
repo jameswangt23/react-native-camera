@@ -20,6 +20,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
   private float mScanAreaHeight;
   private int mCameraWidth;
   private int mCameraHeight;
+  private float mRatio;
 
   //  note(sjchmiela): From my short research it's ok to ignore rotation of the image.
   public BarCodeScannerAsyncTask(
@@ -34,7 +35,8 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
       float scanAreaWidth,
       float scanAreaHeight,
       int cameraWidth,
-      int cameraHeight
+      int cameraHeight,
+      float ratio
   ) {
     mImageData = imageData;
     mWidth = width;
@@ -48,6 +50,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
     mScanAreaHeight = scanAreaHeight;
     mCameraWidth = cameraWidth;
     mCameraHeight = cameraHeight;
+    mRatio = ratio;
   }
 
   @Override
@@ -63,10 +66,7 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
 
     // int top = (int) ((mHeight - scanAreaY * mHeight) / 2);
     // int scanHeight = scanWidth * mScanAreaHeight;
-
-    float ratio = getAspectRatio().toFloat();
-
-    int actualCamHeight = (int) (mCameraWidth / ratio);
+    int actualCamHeight = (int) (mCameraWidth / mRatio);
     float actualMScanY = (((actualCamHeight - mCameraWidth) / 2) + (mScanAreaY * mCameraHeight)) / actualCamHeight;
     
     int left = (int) (mScanAreaX * mWidth);

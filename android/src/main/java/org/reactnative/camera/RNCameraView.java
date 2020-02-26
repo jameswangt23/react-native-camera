@@ -69,10 +69,10 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
 
   //ScanAreaLimitParams
   private boolean mScanAreaLimit = false;
-  private float mScanAreaX = 0.0;
-  private float mScanAreaY = 0.0;
-  private float mScanAreaWidth = 0.0;
-  private float mScanAreaHeight = 0.0;
+  private float mScanAreaX = 0.0f;
+  private float mScanAreaY = 0.0f;
+  private float mScanAreaWidth = 0.0f;
+  private float mScanAreaHeight = 0.0f;
   private int mCameraWidth = 0;
   private int mCameraHeight = 0;
 
@@ -163,7 +163,7 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
           barCodeScannerTaskLock = true;
           BarCodeScannerAsyncTaskDelegate delegate = (BarCodeScannerAsyncTaskDelegate) cameraView;
           // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, correctData, correctWidth, correctHeight, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight).execute();
-          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight, mCameraWidth, mCameraHeight).execute();
+          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight, mCameraWidth, mCameraHeight, getAspectRatio().toFloat()).execute();
           // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height).execute();
         }
 
