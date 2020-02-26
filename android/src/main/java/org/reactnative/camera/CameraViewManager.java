@@ -71,30 +71,26 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   }
 
   /**---limit scan area addition---**/
-
-  @ReactProp(name = "scanAreaLimit")
-  public void setScanAreaLimit(RNCameraView view, boolean scanAreaLimit) {
-    view.setScanAreaLimit(scanAreaLimit);
+  @ReactProp(name = "rectOfInterest")
+  public void setRectOfInterest(RNCameraView view, ReadableMap coordinates) {
+    if(coordinates != null){
+      float x = (float) coordinates.getDouble("x");
+      float y = (float) coordinates.getDouble("y");
+      float width = (float) coordinates.getDouble("width");
+      float height = (float) coordinates.getDouble("height");
+      int cameraWidth = (float) coordinates.getDouble("cameraWidth");
+      int cameraHeight = (float) coordinates.getDouble("cameraHeight");
+      view.setRectOfInterest(x, y, width, height);
+    }
   }
 
-  @ReactProp(name = "scanAreaX")
-  public void setScanAreaX(RNCameraView view, int scanAreaX) {
-    view.setScanAreaX(scanAreaX);
-  }
-
-  @ReactProp(name = "scanAreaY")
-  public void setScanAreaY(RNCameraView view, int scanAreaY) {
-    view.setScanAreaY(scanAreaY);
-  }
-
-  @ReactProp(name = "scanAreaWidth")
-  public void setScanAreaWidth(RNCameraView view, int scanAreaWidth) {
-    view.setScanAreaWidth(scanAreaWidth);
-  }
-
-  @ReactProp(name = "scanAreaHeight")
-  public void setScanAreaHeight(RNCameraView view, int scanAreaHeight) {
-    view.setScanAreaHeight(scanAreaHeight);
+  @ReactProp(name = "cameraViewDimensions")
+  public void setRectOfInterest(RNCameraView view, ReadableMap dimensions) {
+    if(dimensions != null){
+      int cameraWidth = (float) coordinates.getDouble("cameraWidth");
+      int cameraHeight = (float) coordinates.getDouble("cameraHeight");
+      view.setCameraDimensions(cameraWidth, cameraHeight);
+    }
   }
   /**---limit scan area addition---**/
 

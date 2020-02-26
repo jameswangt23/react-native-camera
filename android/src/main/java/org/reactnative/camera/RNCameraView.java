@@ -69,10 +69,13 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
 
   //ScanAreaLimitParams
   private boolean mScanAreaLimit = false;
-  private int mScanAreaX = 0;
-  private int mScanAreaY = 0;
-  private int mScanAreaWidth = 0;
-  private int mScanAreaHeight = 0;
+  private float mScanAreaX = 0.0;
+  private float mScanAreaY = 0.0;
+  private float mScanAreaWidth = 0.0;
+  private float mScanAreaHeight = 0.0;
+  private int mCameraWidth = 0;
+  private int mCameraHeight = 0;
+
 
   public RNCameraView(ThemedReactContext themedReactContext) {
     super(themedReactContext, true);
@@ -160,7 +163,7 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
           barCodeScannerTaskLock = true;
           BarCodeScannerAsyncTaskDelegate delegate = (BarCodeScannerAsyncTaskDelegate) cameraView;
           // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, correctData, correctWidth, correctHeight, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight).execute();
-          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight).execute();
+          new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mScanAreaLimit, mScanAreaX, mScanAreaY, mScanAreaWidth, mScanAreaHeight, mCameraWidth, mCameraHeight).execute();
           // new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height).execute();
         }
 
@@ -476,25 +479,36 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
   }
 
   //ScanAreaLimit addition
-  public void setScanAreaLimit(boolean scanAreaLimit) {
-    this.mScanAreaLimit = scanAreaLimit;
+  public void setRectOfInterest(float x, float y, float width, float height) {
+    this.mScanAreaLimit = true;
+    this.mScanAreaX = x;
+    this.mScanAreaY = y;
+    this.mScanAreaWidth = width;
+    this.mScanAreaHeight = height;
   }
+    public void setCameraViewDimensions(int width, int height) {
+    this.mCameraWidth = width;
+    this.mCameraHeight = height;
+  }
+  // public void setScanAreaLimit(boolean scanAreaLimit) {
+  //   this.mScanAreaLimit = scanAreaLimit;
+  // }
 
-  public void setScanAreaX(int scanAreaX) {
-    this.mScanAreaX = scanAreaX;
-  }
+  // public void setScanAreaX(int scanAreaX) {
+  //   this.mScanAreaX = scanAreaX;
+  // }
 
-  public void setScanAreaY(int scanAreaY) {
-    this.mScanAreaY = scanAreaY;
-  }
+  // public void setScanAreaY(int scanAreaY) {
+  //   this.mScanAreaY = scanAreaY;
+  // }
 
-  public void setScanAreaWidth(int scanAreaWidth) {
-    this.mScanAreaWidth = scanAreaWidth;
-  }
+  // public void setScanAreaWidth(int scanAreaWidth) {
+  //   this.mScanAreaWidth = scanAreaWidth;
+  // }
 
-  public void setScanAreaHeight(int mScanAreaHeight) {
-    this.mScanAreaHeight = mScanAreaHeight;
-  }
+  // public void setScanAreaHeight(int mScanAreaHeight) {
+  //   this.mScanAreaHeight = mScanAreaHeight;
+  // }
 
   @Override
   public void onBarcodeDetectingTaskCompleted() {
